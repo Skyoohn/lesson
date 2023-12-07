@@ -1,0 +1,24 @@
+.header{
+    background-image: linear-gradient(gray, white, gray);
+    color: black;
+    padding:10px;
+    border-radius: 5px;
+}
+#search{
+    background-image: linear-gradient(skyblue, white, skyblue);
+    color: black;
+    padding:10px;
+    border-radius: 5px;
+    float: inline-end;
+    font-size: 200%;
+}
+#content{
+    color: black;
+    float: bottom;
+    border-collapse : collapse;
+    text-align: center;
+}
+#howmany{
+    text-align: right;
+    margin:1%;
+}
