@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社内総合管理システム</title>
+</head>
+<link rel="stylesheet" href="torihiki.css">
+    <h1 class="header">■　取引先登録</h1>
+    <h2>基本情報</h2>
+    <div id="info">
+    取引先名(全名)　<input type="text" style="margin-left: 10px; width: 20%">
+    <p>会社名(略名)　　<input type="text" style="margin-left: 10px; width: 20%"></p>
+    <p>住所　　　　　　〒<input type="text" style="margin-left: 20px; width: 5%;"></p>
+    <p>住所<input type="text" style="margin-left: 10%; width: 30%">番地まで</p>
+    <p>住所<input type="text" style="margin-left: 10%; width: 30%">マンション名・号室など</p>
+    <p>電話<input type="text" style="margin-left: 10%;"></p>
+    <p>FAX <input type="text" style="margin-left: 10%;"></p>
+    <p>ホームページ<input type="text" style="margin-left: 35px; width: 30%;"></p>
+    <p>参考　<input type="text"style="width:50%;height:10%;font-size:30px";></p>
+    </div>
+
+<h2 style="color: red;">振込先情報</h2>
+<h3 style="color: red;">振込先口座</h3>
+    <table border="1" id="bank">
+        <th width="5%" style="background-color: lightsteelblue;">
+            金融機関コード
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            金融機関名
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            支店名コード
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            支店名
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            口座種類
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            口座番号
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            名義人
+        </th>
+        <tr>
+            <td>0005</td>
+            <td>三菱UFJ銀行</td>
+            <td>316</td>
+            <td>福生支店</td>
+            <td>普通</td>
+            <td>1234567</td>
+            <td>カ）ABC</td>
+        </tr>
+    </table>
+    <h2>総務担当者情報</h2>
+
+
+
+<div id="new">
+<p><input type="submit" value="新規行追加">
+<input type="submit" value="最後行削除"></p>
+</div>
+
+
+    <table border="1" id="content">
+        <th width="5%" style="background-color: lightsteelblue;">
+            To
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            CC
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            姓
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            名
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            メールアドレス
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            所属
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            役職
+        </th>
+        <th width="5%" style="background-color: lightsteelblue;">
+            個人電話番号
+        </th>
+        <tr>
+            <td><input type="checkbox"checked="checked"></td>
+            <td><input type="checkbox"></td>
+            <td>劉</td>
+            <td>明</td>
+            <td>XXXX＠XXXXXX.com</td>
+            <td>営業部</td>
+            <td>経理</td>
+            <td>090‐XXXX‐XXXX</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td><input type="checkbox"checked="checked"></td>
+            <td>山田</td>
+            <td>博司</td>
+            <td>XXXX＠XXXXXX.com</td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td><input type="checkbox"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </table>
+
+    <h2>請求設定</h2>
+
+    <input type="checkbox"checked="checked">請求書の郵送
+    <input type="checkbox"checked="checked"style="margin-left: 15%;">特定ファイル名
+    <input type="checkbox"checked="checked"style="margin-left: 15%;">案件名請求
+    <input type="checkbox"checked="checked"style="margin-left: 15%;">納期書付き<br><br>
+    請求書の提供
+    <input type="radio" checked="checked"style="margin-left: 170px;">無し
+    <input type="radio"style="margin-left: 10%;">本体
+    <input type="radio"style="margin-left: 10%;">フォーマット<br><br>
+    請求単位
+    <input type="radio"style="margin-left: 200px;">普通
+    <input type="radio"style="margin-left: 10%;">単体別
+    <input type="radio"style="margin-left: 10%;">現場別
+    <input type="radio"style="margin-left: 10%;">職部別<br><br>
+    本社指定<input type="text" value="株式会社ブライトスター" style="margin-left: 10%;"><br><br>
+    本社口座<input type="text" value="三菱UFJ銀行　高田馬場支店　普通預金　1234567" style="margin-left: 10%; width: 30%;">
+
+    <div id="submit">登　録</div>
+</body>
+</html>
