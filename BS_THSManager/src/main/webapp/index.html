@@ -11,7 +11,7 @@
     取引先名　<input type="text">
     <div id="search">検　索</div>
     <p>■取引先一覧</p>
-    <div id="howmany">件数：3件　　　　　　　　　　<a href="add.html">新規登録</a></div>
+    <div id="howmany">件数：3件　　　　　　　　　　<a href="add">新規登録</a></div>
     <table border="1" id="content">
         <th width="5%" style="background-color: lightsteelblue;">
             取引先名
@@ -29,11 +29,12 @@
             編集
         </th>
         <tr th:each="to:${toMainList}">
-            <td th:text="${to.name}"></td>
-            <td>馬　XX</td>
-            <td>XXX@XXXXXX.co.jp</td>
-            <td>090-0000-0000</td>
-            <td><a href="upd.html">更新<br>削除</br></a> </td>
+            <td th:text="${to.torihikiNameAll}"></td>
+            <td th:text="${to.torihikiNameRyaku}"></td>
+            <td th:text="${to.yuubin}">XXX@XXXXXX.co.jp</td>
+            <td th:text="${to.tel}">090-0000-0000</td>
+            <td><a th:href="@{/upd(torihikiId=${to.torihikiId})}">更新</a><br>
+            <a th:href="@{/del(torihikiId=${to.torihikiId})}">削除</br></a> </td>
         </tr>
         <tr>
             <td>(株)BBB</td>
