@@ -26,7 +26,7 @@ public class TorihikisakiMainController {
 	}
 	
 	@RequestMapping("upd")
-	public String updTorihikisakiMain(@RequestParam("torihikiID")Integer id,Model model) {
+	public String updateTorihikisakiMain(@RequestParam("torihikiId")Integer id,Model model) {
 		model.addAttribute("tomain",torihikisakiMainService.selectTorihikisakiMain(id));
 		return "upd";
 	}
@@ -34,7 +34,7 @@ public class TorihikisakiMainController {
 	@RequestMapping("del")
 	public String delTorihikisakiMain(@RequestParam("torihikiId")Integer id,Model model) {
 		torihikisakiMainService.delTorihikisakiMain(id);
-		return "redirect:/index";
+		return "redirect:/index/";
 	}
 
 }

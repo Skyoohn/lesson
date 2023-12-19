@@ -3,10 +3,12 @@ package com.example.thsmanager.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.thsmanager.entity.TorihikisakiMain;
 import com.example.thsmanager.mapper.TorihikisakiMainMapper;
 
+@Service
 public class TorihikisakiMainService {
 	
 	@Autowired
@@ -22,7 +24,7 @@ public class TorihikisakiMainService {
 	public void addTorihikisakiMain(TorihikisakiMain torihikisakiMain) {
 		torihikisakiMainMapper.addTorihikisakiMain(torihikisakiMain);
 	}
-	public void updTorihikisakiMain(TorihikisakiMain torihikisakiMain) {
+	public void updateTorihikisakiMain(TorihikisakiMain torihikisakiMain) {
 		torihikisakiMainMapper.updateTorihikisakiMain(torihikisakiMain);
 	}
 	public void delTorihikisakiMain(Integer ID) {

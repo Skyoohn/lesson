@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,11 +28,12 @@
         <th width="5%" style="background-color: lightsteelblue;">
             編集
         </th>
+
         <tr th:each="to:${toMainList}">
             <td th:text="${to.torihikiNameAll}"></td>
-            <td th:text="${to.torihikiNameRyaku}"></td>
-            <td th:text="${to.yuubin}">XXX@XXXXXX.co.jp</td>
-            <td th:text="${to.tel}">090-0000-0000</td>
+            <td th:text="${to.torihikiRyaku}"></td>
+            <td th:text="${to.url}"></td>
+            <td th:text="${to.tel}"></td>
             <td><a th:href="@{/upd(torihikiId=${to.torihikiId})}">更新</a><br>
             <a th:href="@{/del(torihikiId=${to.torihikiId})}">削除</br></a> </td>
         </tr>
