@@ -34,6 +34,15 @@
             <td th:text="${to.torihikiRyaku}"></td>
             <td th:text="${to.url}"></td>
             <td th:text="${to.tel}"></td>
+			 <td th:text="${to.fax}"></td>
+			 	 <td th:text="${to.url}"></td>
+					 			 <td th:text="${to.deleteFlag}"></td>
+			 		 			 <td th:text="${to.seikyusyouKubun1}"></td>
+			 		 			 		             	 <td th:text="${to.kousinbi}"></td>
+			 			 			 			 			 <td th:text="${to.honsya}"></td>
+			 		 <td th:text="${to.honsyaKouza}"></td>
+				 <td th:text="${to.kinyukikanCode}"></td>
+				 	 <td th:text="${to.kinyukikanName}"></td>
             <td><a th:href="@{/upd(torihikiId=${to.torihikiId})}">更新</a>
             <a th:href="@{/del(torihikiId=${to.torihikiId})}">削除</a></td>
         </tr>

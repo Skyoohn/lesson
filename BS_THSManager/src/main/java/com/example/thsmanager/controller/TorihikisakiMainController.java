@@ -20,21 +20,29 @@ public class TorihikisakiMainController {
 		return "index";
 	}
 	
+//	@RequestMapping("/add")
+//	public String addTorihikisaki() {
+//		return "add";
+//	}
+	
 	@RequestMapping("/add")
-	public String addTorihikisaki() {
-		return "add";
+	public String addTorihikisaki(@RequestParam("torihikiId") Long torihikiId, Model model) {
+	    // 여기서 필요한 로직 수행
+	    model.addAttribute("tomain", torihikisakiMainService.selectTorihikisakiMain(torihikiId));
+	    return "add";
 	}
+
 	
 	@RequestMapping("upd")
-	public String updateTorihikisakiMain(@RequestParam("torihikiId")Integer id,Model model) {
-		model.addAttribute("tomain",torihikisakiMainService.selectTorihikisakiMain(id));
+	public String updateTorihikisakiMain(@RequestParam("torihikiId")Long ID,Model model) {
+		model.addAttribute("tomain",torihikisakiMainService.selectTorihikisakiMain(ID));
 		return "upd";
 	}
 	
 	@RequestMapping("del")
-	public String delTorihikisakiMain(@RequestParam("torihikiId")Integer id,Model model) {
-		torihikisakiMainService.delTorihikisakiMain(id);
-		return "redirect:/index/";
+	public String delTorihikisakiMain(@RequestParam("torihikiId")Long ID,Model model) {
+		torihikisakiMainService.delTorihikisakiMain(ID);
+		return "redirect:/index";
 	}
 
 }
