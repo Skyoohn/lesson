@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form action="/add/add" method="post" id="zzz">
+        <div class="form-group">
+            <label for="torihikiNameAll">取引先名(全名)　
+                <input type="text" style="margin-left: 10px; width: 20%" id="torihikiNameAll" th:value="${toMain?.torihikiNameAll}" />
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="torihikiRyaku">会社名(略名)　
+                <input type="text" style="margin-left: 10px; width: 20%" id="torihikiRyaku" th:value="${toMain?.torihikiRyaku}" />
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="yuubin">住所　　　　　〒
+                <input type="text" style="margin-left: 10px; width: 20%" id="yuubin" th:value="${toMain?.yuubin}" />
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="jyusyo1">住所　
+                <input type="text" style="margin-left: 10px; width: 20%" id="jyusyo1" th:value="${toMain?.jyusyo1}" />
+            </label>
+        </div>
+
+       <input type="hidden" id="torihikiId" name="torihikiId" th:value="${toMain?.torihikiId}"/>
+        
+        <button type="submit">登録</button>
+    </form>
+</body>
+</html>

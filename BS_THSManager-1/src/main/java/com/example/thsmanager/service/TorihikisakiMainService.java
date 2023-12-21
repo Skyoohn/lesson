@@ -18,8 +18,8 @@ public class TorihikisakiMainService {
 		List<TorihikisakiMain> torihikisakiMains = torihikisakiMainMapper.selectTorihikisakiMains();
 		return torihikisakiMains;
 	}
-	public TorihikisakiMain selectTorihikisakiMain(Integer ID) {
-		return torihikisakiMainMapper.selectTorihikisakiMain(ID);
+	public TorihikisakiMain selectTorihikisakiMain(Integer torihikiId) {
+		return torihikisakiMainMapper.selectTorihikisakiMain(torihikiId);
 	}
 	public void addTorihikisakiMain(TorihikisakiMain torihikisakiMain) {
 		torihikisakiMainMapper.addTorihikisakiMain(torihikisakiMain);
@@ -27,8 +27,8 @@ public class TorihikisakiMainService {
 	public void updateTorihikisakiMain(TorihikisakiMain torihikisakiMain) {
 		torihikisakiMainMapper.updateTorihikisakiMain(torihikisakiMain);
 	}
-	public void delTorihikisakiMain(Integer ID) {
-		torihikisakiMainMapper.delTorihikisakiMain(ID);
+	public void delTorihikisakiMain(Integer torihikiId) {
+		torihikisakiMainMapper.delTorihikisakiMain(torihikiId);
 	}
 
 }

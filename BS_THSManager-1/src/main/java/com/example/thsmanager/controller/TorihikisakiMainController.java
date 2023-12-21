@@ -58,8 +58,8 @@ public class TorihikisakiMainController {
 	
 	
 	@RequestMapping("upd")
-	public String updateTorihikisakiMain(@RequestParam("torihikiId")Integer ID,Model model) {
-		model.addAttribute("toMain",torihikisakiMainService.selectTorihikisakiMain(ID));
+	public String updateTorihikisakiMain(@RequestParam("torihikiId")Integer torihikiId,Model model) {
+		model.addAttribute("toMain",torihikisakiMainService.selectTorihikisakiMain(torihikiId));
 		return "upd";
 	}
 	
