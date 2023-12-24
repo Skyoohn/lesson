@@ -30,11 +30,13 @@
         </th>
 
         <tr th:each="to:${toMainList}">
-            <td th:text="${to.torihikiNameAll}"></td>
-            <td th:text="${to.torihikiRyaku}"></td>
+			<td th:text="${to.torihikiNameAll}"></td>
+    <td>
+        <span th:if="${to != null}" th:text="#{to.torihikiRyaku}">[Null Value]</span>
+    </td>
             <td th:text="${to.tel}"></td>
 			 <td th:text="${to.fax}"></td>
-            <td><a th:href="@{/upd(torihikiId=${to.torihikiId})}">更新</a>
+            <td><a th:href="@{/upd(torihikiId=#{to.torihikiId})}">更新</a>
             <a th:href="@{/del(torihikiId=${to.torihikiId})}">削除</a></td>
         </tr>
     </table>

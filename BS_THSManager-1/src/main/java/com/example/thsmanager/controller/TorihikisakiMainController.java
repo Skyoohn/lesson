@@ -1,5 +1,7 @@
 package com.example.thsmanager.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,9 +19,15 @@ public class TorihikisakiMainController {
 	
 	@RequestMapping("/index")
 	public String selectall(Model model) {
-		model.addAttribute("toMainList",torihikisakiMainService.selectTorihikisakiMains());
-		return "index";
+	    List<TorihikisakiMain> toMainList = torihikisakiMainService.selectTorihikisakiMains();
+	    
+	    // Debugging: print the contents of toMainList to console
+	    toMainList.forEach(System.out::println);
+	    
+	    model.addAttribute("toMainList", toMainList);
+	    return "index";
 	}
+
 	
 	@RequestMapping("/add")
 	public String addTorihikisaki() {
@@ -39,16 +47,6 @@ public class TorihikisakiMainController {
 //	    return "redirect:/index";
 //	}
 	
-//    @PostMapping("/add/add")
-//    public String handleFormSubmit(
-//            @RequestParam("torihikiId") Integer torihikiId,
-//            @RequestParam("torihikiNameAll") String torihikiNameAll,
-//            @RequestParam("torihikiRyaku") String torihikiRyaku,
-//            @RequestParam("yuubin") String yuubin,
-//            @RequestParam("jyusyo1") String jyusyo1) {
-//        
-//        return "redirect:/index";
-//    }
 	
 //	@RequestMapping("/add/add")
 //	public String addAddTorihikisaki(@RequestBody()Integer ID,Model model) {
@@ -64,8 +62,8 @@ public class TorihikisakiMainController {
 	}
 	
 	@RequestMapping("del")
-	public String delTorihikisakiMain(@RequestParam("torihikiId")Integer ID,Model model) {
-		torihikisakiMainService.delTorihikisakiMain(ID);
+	public String delTorihikisakiMain(@RequestParam("torihikiId")Integer torihikiId,Model model) {
+		torihikisakiMainService.delTorihikisakiMain(torihikiId);
 		return "redirect:/index";
 	}
 
