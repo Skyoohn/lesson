@@ -52,18 +52,18 @@
             名義人
         </th>
 		 <tr th:each="to:${toMain}">
-            <td th:text="${toMain.kinyukikanCode}"></td>
-            <td th:text="${toMain.kinyukikanName}"></td>
-            <td th:text="${toMain.sitenCode}"></td>
-            <td th:text="${toMain.sitenName}"></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" id="kinyukikanCode"th:value="${toMain?.kinyukikanCode}"/></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" id="kinyukikanName"th:value="${toMain?.kinyukikanName}"/></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" id="sitenCode"th:value="${toMain?.sitenCode}"/></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" id="sitenName"th:value="${toMain?.sitenName}"/></td>
             <td>
 <select name="kouzaKind">
     <option th:if="${toMain.kouzaKind == 1}" th:value="1" th:text="普通" selected></option>
     <option th:if="${toMain.kouzaKind == 2}" th:value="2" th:text="当座" selected></option>
 </select>
 
-            <td th:text="${toMain.kouzaNum}"></td>
-            <td th:text="${toMain.meigiName}"></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" id="kouzaNum"th:value="${toMain?.kouzaNum}"/></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" id="meigiName"th:value="${toMain?.meigiName}"/></td>
         </tr>
     </table>
     <h2>総務担当者情報</h2>
@@ -103,9 +103,10 @@
             個人電話番号
         </th>
         <tr>
+<!--			<tr th:each="to:${toMainn}">-->
             <td><input type="checkbox"></td>
             <td><input type="checkbox"></td>
-            <td></td>
+<!--            <td><input type="text" style="margin-left: 10px; width: 20%" id="firstName"th:value="${toMainn?.firstName}"/></td>-->
             <td></td>
             <td></td>
             <td></td>
@@ -116,10 +117,10 @@
 
     <h2>請求設定</h2>
     <hr>
-    <input type="checkbox" name="seikyusyouKubun1" th:checked="${toMain?.seikyusyouKubun1 == 1}">請求書の郵送
-<input type="checkbox" style="margin-left: 15%;" name="seikyusyouKubun2" th:checked="${toMain?.seikyusyouKubun2 == 1}">特定ファイル名
-<input type="checkbox" style="margin-left: 15%;" name="seikyusyouKubun3" th:checked="${toMain?.seikyusyouKubun3 == 1}">案件名請求
-<input type="checkbox" style="margin-left: 15%;" name="seikyusyouKubun4" th:checked="${toMain?.seikyusyouKubun4 == 1}">納期書付き<p><p>
+    <input type="checkbox" name="seikyusyouKubun1" th:checked="${toMain?.seikyusyouKubun1 == 1}" value="1">請求書の郵送
+<input type="checkbox" style="margin-left: 15%;" name="seikyusyouKubun2" th:checked="${toMain?.seikyusyouKubun2 == 1}" value="1">特定ファイル名
+<input type="checkbox" style="margin-left: 15%;" name="seikyusyouKubun3" th:checked="${toMain?.seikyusyouKubun3 == 1}" value="1">案件名請求
+<input type="checkbox" style="margin-left: 15%;" name="seikyusyouKubun4" th:checked="${toMain?.seikyusyouKubun4 == 1}" value="1">納期書付き<p><p>
 
     請求書の提供
 <input type="radio" name="radioGroup" value="0" th:checked="${toMain?.seikyusyouKubun5 == 0}"style="margin-left: 10%;">無し

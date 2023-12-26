@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.thsmanager.entity.TorihikisakiMain;
+import com.example.thsmanager.entity.TorihikisakiTantou;
+import com.example.thsmanager.service.TantouService;
 import com.example.thsmanager.service.TorihikisakiMainService;
 
 @Controller
@@ -19,12 +21,17 @@ public class TorihikisakiMainController {
 	@Autowired
 	private TorihikisakiMainService torihikisakiMainService;
 	
+	@Autowired
+	private TantouService tantouService;
+	
 	@RequestMapping("/index")
 	public String selectall(Model model) {
 	    List<TorihikisakiMain> toMainList = torihikisakiMainService.selectTorihikisakiMains();
+	    List<TorihikisakiTantou> toMainListt = tantouService.selectTorihikisakiTantous();
 	    
 	    // Debugging: print the contents of toMainList to console
 	    toMainList.forEach(System.out::println);
+	    toMainListt.forEach(System.out::println);
 	    
 	    model.addAttribute("toMainList", toMainList);
 	    return "index";
@@ -43,13 +50,15 @@ public class TorihikisakiMainController {
 	}
 	
 	@RequestMapping("upd")
-	public String updateTorihikisakiMain(@RequestParam("torihikiId")Integer torihikiId,Model model) {
+	public String updateTorihikisakiMain(@RequestParam("torihikiId")Integer torihikiId,Model model)
+			/*@RequestParam("tantouId")Integer tantouId)*/ {
 		model.addAttribute("toMain",torihikisakiMainService.selectTorihikisakiMain(torihikiId));
+		/*model.addAttribute("toMainn",tantouService.selectTorihikisakiTantou(tantouId));*/
 		return "upd";
 	}
 	
     @PostMapping("/upd/upd")
-    public String updateTorihikisakiMain(@ModelAttribute("toMain") TorihikisakiMain toMain) {
+    public String updateTorihikisakiMains(@ModelAttribute("toMain") TorihikisakiMain toMain) {
         torihikisakiMainService.updateTorihikisakiMain(toMain);
         return "redirect:/index";
     }

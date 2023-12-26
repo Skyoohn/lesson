@@ -17,7 +17,7 @@
     	targetPackage="com.example.thsmanager.mapper" 
     	targetProject="BS_THSManager/src/main/java" 
     	type="XMLMAPPER" />
-    <table schema="mysql" tableName="torihikisaki_main">
+    <table schema="mysql" tableName="TORIHIKISAKI_TANTOU">
     </table>
   </context>
 </generatorConfiguration>
