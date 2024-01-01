@@ -2,6 +2,8 @@ package com.example.thsmanager.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
@@ -309,6 +311,7 @@ public class TorihikisakiMain {
      *
      * @mbg.generated Sun Dec 24 12:48:52 KST 2023
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date kousinbi;
 
     /**

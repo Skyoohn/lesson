@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.thsmanager.entity.TorihikisakiMain;
 import com.example.thsmanager.entity.TorihikisakiTantou;
-import com.example.thsmanager.service.TantouService;
 import com.example.thsmanager.service.TorihikisakiMainService;
+import com.example.thsmanager.service.TorihikisakiTantouService;
 
 @Controller
 public class TorihikisakiMainController {
@@ -22,18 +22,18 @@ public class TorihikisakiMainController {
 	private TorihikisakiMainService torihikisakiMainService;
 	
 	@Autowired
-	private TantouService tantouService;
+	private TorihikisakiTantouService torihikisakiTantouService;
 	
 	@RequestMapping("/index")
 	public String selectall(Model model) {
 	    List<TorihikisakiMain> toMainList = torihikisakiMainService.selectTorihikisakiMains();
-	    List<TorihikisakiTantou> toMainListt = tantouService.selectTorihikisakiTantous();
+	    List<TorihikisakiTantou> toMainListt = torihikisakiTantouService.selectTorihikisakiTantous();
 	    
-	    // Debugging: print the contents of toMainList to console
 	    toMainList.forEach(System.out::println);
 	    toMainListt.forEach(System.out::println);
 	    
 	    model.addAttribute("toMainList", toMainList);
+	    model.addAttribute("toMainListt", toMainListt);
 	    return "index";
 	}
 
@@ -49,11 +49,23 @@ public class TorihikisakiMainController {
 	    return "redirect:/index";
 	}
 	
+	/*	@RequestMapping("/upd/add")
+		public String addTorihikisakiT(TorihikisakiTantou torihikisakiTantou){
+			torihikisakiTantouService.addTorihikisakiTantou(torihikisakiTantou);
+		    return "redirect:/upd";
+		}*/
+	
+	@RequestMapping("/upd/add")
+    public String addTorihikisakiT(@ModelAttribute("toMainn") TorihikisakiTantou toMainn) {
+		torihikisakiTantouService.addTorihikisakiTantou(toMainn);
+        return "redirect:/index";
+	}
+	
 	@RequestMapping("upd")
 	public String updateTorihikisakiMain(@RequestParam("torihikiId")Integer torihikiId,Model model)
 			/*@RequestParam("tantouId")Integer tantouId)*/ {
 		model.addAttribute("toMain",torihikisakiMainService.selectTorihikisakiMain(torihikiId));
-		/*model.addAttribute("toMainn",tantouService.selectTorihikisakiTantou(tantouId));*/
+		/*		model.addAttribute("toMainn",torihikisakiTantouService.selectTorihikisakiTantou(tantouId));*/
 		return "upd";
 	}
 	
@@ -66,6 +78,12 @@ public class TorihikisakiMainController {
 	@RequestMapping("del")
 	public String delTorihikisakiMain(@RequestParam("torihikiId")Integer torihikiId,Model model) {
 		torihikisakiMainService.delTorihikisakiMain(torihikiId);
+		return "redirect:/index";
+	}
+	
+	@RequestMapping("/upd/del")
+	public String delTorihikisakiTantou(@RequestParam("tantouId")Integer tantouId,Model model) {
+		torihikisakiTantouService.delTorihikisakiTantou(tantouId);
 		return "redirect:/index";
 	}
 

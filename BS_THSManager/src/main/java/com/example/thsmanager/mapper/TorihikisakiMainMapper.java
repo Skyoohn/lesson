@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -17,21 +19,17 @@ public interface TorihikisakiMainMapper {
 	@Select("select * from torihikisaki_main")
 	List<TorihikisakiMain> selectTorihikisakiMains();
 	
-	@Select("select * from torihikisaki_main where TORIHIKI_ID=#{torihikiId}")
+    @Select("SELECT TM.*, TT.* " +
+            "FROM TORIHIKISAKI_MAIN TM " +
+            "INNER JOIN TORIHIKISAKI_TANTOU TT ON TM.TORIHIKI_ID = TT.TORIHIKI_ID " +
+            "WHERE TM.TORIHIKI_ID = #{torihikiId}")
+    @Results({
+        @Result(property = "torihikiId", column = "TORIHIKI_ID"),
+        // 다른 필드들에 대한 매핑 추가
+        @Result(property = "tantouId", column = "TANTOU_ID"),
+        // TORIHIKISAKI_TANTOU의 필드들에 대한 매핑 추가
+})
 	TorihikisakiMain selectTorihikisakiMain(Integer torihikiId);
-	
-
-	/*    @Select("select * from torihikisaki_main where TORIHIKI_ID=#{torihikiId}")
-	@Results({
-	    @Result(property = "torihikiId", column = "TORIHIKI_ID"),
-	    // 다른 필드들에 대한 매핑
-	    @Result(property = "torihikisakiTantou", column = "TORIHIKI_ID",
-	        javaType = List.class, many = @Many(select = "com.example.mapper.TorihikisakiMapper.selectTantouByTorihikiId"))
-	})
-	TorihikisakiMain selectTorihikisakiWithTantou(Integer torihikiId);
-	
-	@Select("select * from torihikisaki_tantou where TORIHIKI_ID=#{torihikiId}")
-	List<TorihikisakiTantou> selectTantouByTorihikiId(Integer torihikiId);*/
 	
 	@Insert("insert into torihikisaki_main(TORIHIKI_NAME_ALL, TORIHIKI_RYAKU, YUUBIN, JYUSYO_1, JYUSYO_2,"
 	        + "TEL, FAX, URL, BIKOU, SEIKYUSYOU_KUBUN_1, SEIKYUSYOU_KUBUN_2, SEIKYUSYOU_KUBUN_3, SEIKYUSYOU_KUBUN_4, SEIKYUSYOU_KUBUN_5,"
@@ -45,17 +43,14 @@ public interface TorihikisakiMainMapper {
 
 	
 	@Update("update torihikisaki_main set TORIHIKI_NAME_ALL=#{torihikiNameAll},"
-	        + "TORIHIKI_RYAKU=#{torihikiRyaku},YUUBIN=#{yuubin},JYUSYO_1=#{jyusyo1},JYUSYO_2=#{jyusyo2},"
-	        + "TEL=#{tel},FAX=#{fax},URL=#{url},BIKOU=#{bikou},SEIKYUSYOU_KUBUN_1=#{seikyusyouKubun1},"
-	        + "SEIKYUSYOU_KUBUN_2=#{seikyusyouKubun2},SEIKYUSYOU_KUBUN_3=#{seikyusyouKubun3},SEIKYUSYOU_KUBUN_4=#{seikyusyouKubun4},"
-	        + "SEIKYUSYOU_KUBUN_5=#{seikyusyouKubun5},"
-	        + "SEIKYUSYOU_KUBUN_6=#{seikyusyouKubun6},SEIKYUSYOU_KUBUN_7=#{seikyusyouKubun7},SEIKYUSYOU_KUBUN_8=#{seikyusyouKubun8},SEIKYUSYOU_KUBUN_9=#{seikyusyouKubun9},"
-	        + "SEIKYUSYOU_KUBUN_10=#{seikyusyouKubun10},SEIKYUSYOU_KUBUN_11=#{seikyusyouKubun11},HONSYA=#{honsya},HONSYA_KOUZA=#{honsyaKouza},"
-	        + "KINYUKIKAN_CODE=#{kinyukikanCode},KINYUKIKAN_NAME=#{kinyukikanName},SITEN_CODE=#{sitenCode},SITEN_NAME=#{sitenName},"
-	        + "KOUZA_KIND=#{kouzaKind},KOUZA_NUM=#{kouzaNum},MEIGI_NAME=#{meigiName},TOUROKUBI=#{tourokubi},KOUSINBI=#{kousinbi}"
-	        + " where TORIHIKI_ID=#{torihikiId}")
+			+ "TORIHIKI_RYAKU=#{torihikiRyaku},YUUBIN=#{yuubin},JYUSYO_1=#{jyusyo1},JYUSYO_2=#{jyusyo2},"
+			+ "TEL=#{tel},FAX=#{fax},URL=#{url},BIKOU=#{bikou},SEIKYUSYOU_KUBUN_1=#{seikyusyouKubun1},"
+			+ "SEIKYUSYOU_KUBUN_2=#{seikyusyouKubun2},SEIKYUSYOU_KUBUN_3=#{seikyusyouKubun3},SEIKYUSYOU_KUBUN_4=#{seikyusyouKubun4},"
+			+ "SEIKYUSYOU_KUBUN_5=#{seikyusyouKubun5},"
+			+ "SEIKYUSYOU_KUBUN_6=#{seikyusyouKubun6},"
+			+ "KINYUKIKAN_CODE=#{kinyukikanCode},KINYUKIKAN_NAME=#{kinyukikanName},SITEN_CODE=#{sitenCode},SITEN_NAME=#{sitenName},"
+			+ "KOUZA_KIND=#{kouzaKind},KOUZA_NUM=#{kouzaNum},MEIGI_NAME=#{meigiName},KOUSINBI=#{kousinbi}")
 	void updateTorihikisakiMain(TorihikisakiMain torihikisakiMain);
-
 	
 	@Delete("delete from torihikisaki_main where TORIHIKI_ID=#{torihikiId}")
 	void delTorihikisakiMain(Integer torihikiId);

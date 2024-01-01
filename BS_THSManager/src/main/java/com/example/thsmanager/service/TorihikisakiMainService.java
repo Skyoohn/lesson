@@ -10,7 +10,6 @@ import com.example.thsmanager.entity.TorihikisakiMain;
 import com.example.thsmanager.mapper.TorihikisakiMainMapper;
 
 @Service
-@Transactional
 public class TorihikisakiMainService {
 	
 	@Autowired
@@ -26,6 +25,7 @@ public class TorihikisakiMainService {
 	public void addTorihikisakiMain(TorihikisakiMain torihikisakiMain) {
 		torihikisakiMainMapper.addTorihikisakiMain(torihikisakiMain);
 	}
+	@Transactional
 	public void updateTorihikisakiMain(TorihikisakiMain torihikisakiMain) {
 		torihikisakiMainMapper.updateTorihikisakiMain(torihikisakiMain);
 	}

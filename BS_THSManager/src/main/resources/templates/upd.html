@@ -8,72 +8,59 @@
 </head>
 <body>
 	<form action="/upd/upd" method="post" id="zzz" th:object="${toMain}">
-<link rel="stylesheet" href="torihiki.css">
-    <h1 class="header">■　取引先更新</h1>
-    <h2>基本情報</h2>
-    <hr>
-    <div id="info">
-    取引ID　　　　<input type="text" style="margin-left: 10px; width: 20%"id="torihikiId"th:value="${toMain?.torihikiId}">
-    <p><label for="torihikiNameAll">取引先名(全名)　
-	<input type="text" style="margin-left: 10px; width: 20%" id="torihikiNameAll"th:value="${toMain?.torihikiNameAll}"/></label></p>
-    <p>会社名(略名)　　<input type="text" style="margin-left: 10px; width: 20%"id="torihikiRyaku"th:value="${toMain?.torihikiRyaku}"></p>
-    <p><label for="yuubin">住所　　　　　　〒<input type="text" style="margin-left: 20px; width: 5%;"id="yuubin"th:value="${toMain?.yuubin}"></label></p>
-    <p>住所<input type="text" style="margin-left: 10%; width: 30%"id="jyusyo1"th:value="${toMain?.jyusyo1}">番地まで</p>
-    <p>住所<input type="text" style="margin-left: 10%; width: 30%"id="jyusyo2"th:value="${toMain?.jyusyo2}">マンション名・号室など</p>
-    <p>電話<input type="text" style="margin-left: 10%; width: 30%"id="tel"th:value="${toMain?.tel}"></p>
-    <p>FAX <input type="text" style="margin-left: 10%;"id="fax"th:value="${toMain?.fax}"></p>
-    <p>ホームページ　　<input type="text" style="margin-left: 35px; width: 30%;"id="url"th:value="${toMain?.url}"></p>
-    <p>参考　<input type="text"style="width:50%;height:10%;font-size:30px";id="bikou"th:value="${toMain?.bikou}"></p>
-    </div>
+        <link rel="stylesheet" href="torihiki.css">
+        <h1 class="header">■ 取引先更新</h1>
+        <h2>基本情報</h2>
+        <hr>
+        <div id="info">
+            取引ID <input type="text" style="margin-left: 10px; width: 20%" id="torihikiId" th:value="${toMain?.torihikiId}" name="torihikiId">
+            <p><label for="torihikiNameAll">取引先名(全名) <input type="text" style="margin-left: 10px; width: 20%" id="torihikiNameAll" th:value="${toMain?.torihikiNameAll}" name="torihikiNameAll"></label></p>
+            <p>会社名(略名) <input type="text" style="margin-left: 10px; width: 20%" id="torihikiRyaku" th:value="${toMain?.torihikiRyaku}" name="torihikiRyaku"></p>
+            <p><label for="yuubin">住所 〒<input type="text" style="margin-left: 20px; width: 5%" id="yuubin" th:value="${toMain?.yuubin}" name="yuubin"></label></p>
+            <p>住所<input type="text" style="margin-left: 10%; width: 30%" id="jyusyo1" th:value="${toMain?.jyusyo1}" name="jyusyo1">番地まで</p>
+            <p>住所<input type="text" style="margin-left: 10%; width: 30%" id="jyusyo2" th:value="${toMain?.jyusyo2}" name="jyusyo2">マンション名・号室など</p>
+            <p>電話<input type="text" style="margin-left: 10%; width: 30%" id="tel" th:value="${toMain?.tel}" name="tel"></p>
+            <p>FAX <input type="text" style="margin-left: 10%" id="fax" th:value="${toMain?.fax}" name="fax"></p>
+            <p>ホームページ <input type="text" style="margin-left: 35px; width: 30%" id="url" th:value="${toMain?.url}" name="url"></p>
+            <p>参考 <input type="text" style="width:50%;height:10%;font-size:30px" id="bikou" th:value="${toMain?.bikou}" name="bikou"></p>
+        </div>
 
-<h2 style="color: red;">振込先情報</h2>
-<hr>
-<h3 style="color: red;">振込先口座</h3>
-    <table border="1" id="bank">
-        <th width="5%" style="background-color: lightsteelblue;">
-            金融機関コード
-        </th>
-        <th width="5%" style="background-color: lightsteelblue;">
-            金融機関名
-        </th>
-        <th width="5%" style="background-color: lightsteelblue;">
-            支店名コード
-        </th>
-        <th width="5%" style="background-color: lightsteelblue;">
-            支店名
-        </th>
-        <th width="5%" style="background-color: lightsteelblue;">
-            口座種類
-        </th>
-        <th width="5%" style="background-color: lightsteelblue;">
-            口座番号
-        </th>
-        <th width="5%" style="background-color: lightsteelblue;">
-            名義人
-        </th>
-		 <tr th:each="to:${toMain}">
-            <td><input type="text" style="margin-left: 10px; width: 20%" id="kinyukikanCode"th:value="${toMain?.kinyukikanCode}"/></td>
-            <td><input type="text" style="margin-left: 10px; width: 20%" id="kinyukikanName"th:value="${toMain?.kinyukikanName}"/></td>
-            <td><input type="text" style="margin-left: 10px; width: 20%" id="sitenCode"th:value="${toMain?.sitenCode}"/></td>
-            <td><input type="text" style="margin-left: 10px; width: 20%" id="sitenName"th:value="${toMain?.sitenName}"/></td>
-            <td>
-<select name="kouzaKind">
-    <option th:if="${toMain.kouzaKind == 1}" th:value="1" th:text="普通" selected></option>
-    <option th:if="${toMain.kouzaKind == 2}" th:value="2" th:text="当座" selected></option>
-</select>
-
-            <td><input type="text" style="margin-left: 10px; width: 20%" id="kouzaNum"th:value="${toMain?.kouzaNum}"/></td>
-            <td><input type="text" style="margin-left: 10px; width: 20%" id="meigiName"th:value="${toMain?.meigiName}"/></td>
-        </tr>
-    </table>
+        <h2 style="color: red;">振込先情報</h2>
+        <hr>
+        <h3 style="color: red;">振込先口座</h3>
+        <table border="1" id="bank">
+            <th width="5%" style="background-color: lightsteelblue;">金融機関コード</th>
+            <th width="5%" style="background-color: lightsteelblue;">金融機関名</th>
+            <th width="5%" style="background-color: lightsteelblue;">支店名コード</th>
+            <th width="5%" style="background-color: lightsteelblue;">支店名</th>
+            <th width="5%" style="background-color: lightsteelblue;">口座種類</th>
+            <th width="5%" style="background-color: lightsteelblue;">口座番号</th>
+            <th width="5%" style="background-color: lightsteelblue;">名義人</th>
+            <tr th:each="to:${toMain}">
+                <td><input type="text" style="margin-left: 10px; width: 20%" id="kinyukikanCode" th:value="${toMain?.kinyukikanCode}" name="kinyukikanCode"></td>
+                <td><input type="text" style="margin-left: 10px; width: 20%" id="kinyukikanName" th:value="${toMain?.kinyukikanName}" name="kinyukikanName"></td>
+                <td><input type="text" style="margin-left: 10px; width: 20%" id="sitenCode" th:value="${toMain?.sitenCode}" name="sitenCode"></td>
+                <td><input type="text" style="margin-left: 10px; width: 20%" id="sitenName" th:value="${toMain?.sitenName}" name="sitenName"></td>
+                <td>
+                    <select name="kouzaKind">
+                        <option th:if="${toMain.kouzaKind == 1}" value="1" th:text="普通" selected></option>
+                        <option th:if="${toMain.kouzaKind == 2}" value="2" th:text="当座" selected></option>
+                    </select>
+                </td>
+                <td><input type="text" style="margin-left: 10px; width: 20%" id="kouzaNum" th:value="${toMain?.kouzaNum}" name="kouzaNum"></td>
+                <td><input type="text" style="margin-left: 10px; width: 20%" id="meigiName" th:value="${toMain?.meigiName}" name="meigiName"></td>
+            </tr>
+        </table>
     <h2>総務担当者情報</h2>
     <hr>
 
 
 
 <div id="new">
-<p><input type="submit" value="新規行追加">
-<input type="submit" value="最後行削除"></p>
+<p>
+
+<input type="submit" value="新規行追加" formaction="/upd/add">
+<input type="submit" value="最後行削除" formaction="/upd/del"></p>
 </div>
 
 
@@ -102,16 +89,21 @@
         <th width="5%" style="background-color: lightsteelblue;">
             個人電話番号
         </th>
+                <tr th:each="to:${toMainListt}">
+			<td th:text="${to.firstName}"></td>
+			<td th:text="${to.lastName}"></td>
+            <td th:text="${to.mail}"></td>
+			 <td th:text="${to.syozoku}"></td>
+                </tr>
         <tr>
-<!--			<tr th:each="to:${toMainn}">-->
             <td><input type="checkbox"></td>
             <td><input type="checkbox"></td>
-<!--            <td><input type="text" style="margin-left: 10px; width: 20%" id="firstName"th:value="${toMainn?.firstName}"/></td>-->
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" name="firstName" th:value="${toMainn?.firstName}"/></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" name="lastName"th:value="${toMainn?.lastName}"/></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" name="mail"th:value="${toMainn?.mail}"/></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" name="syozoku"th:value="${toMainn?.syozoku}"/></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" name="yakusyoku"th:value="${toMainn?.yakusyoku}"/></td>
+            <td><input type="text" style="margin-left: 10px; width: 20%" name="tel"th:value="${toMainn?.tel}"/></td>
         </tr>
         </table>
 
@@ -123,20 +115,22 @@
 <input type="checkbox" style="margin-left: 15%;" name="seikyusyouKubun4" th:checked="${toMain?.seikyusyouKubun4 == 1}" value="1">納期書付き<p><p>
 
     請求書の提供
-<input type="radio" name="radioGroup" value="0" th:checked="${toMain?.seikyusyouKubun5 == 0}"style="margin-left: 10%;">無し
-<input type="radio" name="radioGroup" value="1" th:checked="${toMain?.seikyusyouKubun5 == 1}"style="margin-left: 10%;">本体
-<input type="radio" name="radioGroup" value="2" th:checked="${toMain?.seikyusyouKubun5 == 2}"style="margin-left: 10%;">フォーマット
+<input type="radio" name="seikyusyouKubun5" th:field="${toMain.seikyusyouKubun5}" value="0" style="margin-left: 10%;">無し
+<input type="radio" name="seikyusyouKubun5" th:field="${toMain.seikyusyouKubun5}" value="1" style="margin-left: 10%;">本体
+<input type="radio" name="seikyusyouKubun5" th:field="${toMain.seikyusyouKubun5}" value="2" style="margin-left: 10%;">フォーマット
     <p>請求単位
-<input type="radio" name="radioGroup1" value="0" th:checked="${toMain?.seikyusyouKubun6 == 0}"style="margin-left: 200px;">普通
-<input type="radio" name="radioGroup1" value="1" th:checked="${toMain?.seikyusyouKubun6 == 1}"style="margin-left: 10%;">単体別
-<input type="radio" name="radioGroup1" value="2" th:checked="${toMain?.seikyusyouKubun6 == 2}"style="margin-left: 10%;">現場別
-<input type="radio" name="radioGroup1" value="3" th:checked="${toMain?.seikyusyouKubun6 == 3}"style="margin-left: 10%;">職部別
+<input type="radio" name="radioGroup1" value="0" th:field="${toMain.seikyusyouKubun6}" th:checked="${toMain.seikyusyouKubun6 == 0}" style="margin-left: 200px;">普通
+<input type="radio" name="radioGroup1" value="1" th:field="${toMain.seikyusyouKubun6}" th:checked="${toMain.seikyusyouKubun6 == 1}" style="margin-left: 10%;">単体別
+<input type="radio" name="radioGroup1" value="2" th:field="${toMain.seikyusyouKubun6}" th:checked="${toMain.seikyusyouKubun6 == 2}" style="margin-left: 10%;">現場別
+<input type="radio" name="radioGroup1" value="3" th:field="${toMain.seikyusyouKubun6}" th:checked="${toMain.seikyusyouKubun6 == 3}" style="margin-left: 10%;">職部別
+
 <br><br>
     本社指定<input type="text" style="margin-left: 10%;" th:value="${toMain.honsya == 1 ? '株式会社ブライトスター' : (toMain.honsya == 2 ? '株式会社トップクラウド' : '')}">
 <br><br>
     本社口座<input type="text" style="margin-left: 10%;" th:value="${toMain.honsya == 1 ? 'りそな銀行　秋葉原支店　普通預金　1234567' : (toMain.honsya == 2 ? '三菱UFJ銀行　高田馬場支店　普通預金　1234567' : '')}">
 
-
+<input type="hidden" id="kousinbi" name="kousinbi" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}"/>
+   
     <button type="submit">登　録</button>
 	</form>
 </body>
