@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 public class TorihikisakiTantou {
 	@Override
 	public String toString() {
-	    return "TorihikisakiMain{" +
+	    return "TorihikisakiTantou{" +
 	            "tantouId=" + tantouId +
 	            ", firstName='" + firstName + '\'' +
 	            ", lastName='" + lastName + '\'' +

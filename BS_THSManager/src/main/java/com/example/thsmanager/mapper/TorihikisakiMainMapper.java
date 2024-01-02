@@ -6,8 +6,6 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -19,16 +17,7 @@ public interface TorihikisakiMainMapper {
 	@Select("select * from torihikisaki_main")
 	List<TorihikisakiMain> selectTorihikisakiMains();
 	
-    @Select("SELECT TM.*, TT.* " +
-            "FROM TORIHIKISAKI_MAIN TM " +
-            "INNER JOIN TORIHIKISAKI_TANTOU TT ON TM.TORIHIKI_ID = TT.TORIHIKI_ID " +
-            "WHERE TM.TORIHIKI_ID = #{torihikiId}")
-    @Results({
-        @Result(property = "torihikiId", column = "TORIHIKI_ID"),
-        // 다른 필드들에 대한 매핑 추가
-        @Result(property = "tantouId", column = "TANTOU_ID"),
-        // TORIHIKISAKI_TANTOU의 필드들에 대한 매핑 추가
-})
+	@Select("select * from torihikisaki_main where TORIHIKI_ID=#{torihikiId}")
 	TorihikisakiMain selectTorihikisakiMain(Integer torihikiId);
 	
 	@Insert("insert into torihikisaki_main(TORIHIKI_NAME_ALL, TORIHIKI_RYAKU, YUUBIN, JYUSYO_1, JYUSYO_2,"
