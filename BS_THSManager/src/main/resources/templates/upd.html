@@ -8,93 +8,72 @@
 </head>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var form = document.getElementById('zzz'); // 실제 사용하는 form의 id로 변경
-        var submitButton = document.querySelector('button[type="submit"]');
-        var deleteButton = document.querySelector('input[value="最後行削除"]');
-        var addNewRowButton = document.querySelector('input[value="新規行追加"]');
-        var checkbox = document.querySelector('input[type="checkbox"]');
+        var form = document.getElementById('zzz'); // yourFormId는 실제로 사용하는 form의 id로 변경
 
-        // 기존의 取引先名(全名) 값
-        var originalTorihikiNameAll = document.getElementById('torihikiNameAll').value.trim();
-
-        // 삭제 버튼 클릭 시 동작
-        deleteButton.addEventListener('click', function () {
-            // 폼 안의 특정 입력 필드에 대해 값을 비웁니다.
-            var firstNameInput = document.querySelector('input[name="firstName"]');
-            var lastNameInput = document.querySelector('input[name="lastName"]');
-            var mailInput = document.querySelector('input[name="mail"]');
-            var syozokuInput = document.querySelector('input[name="syozoku"]');
-            var yakusyokuInput = document.querySelector('input[name="yakusyoku"]');
-            var telInput = document.querySelector('input[name="tel"]');
-
-            // 각 입력 필드의 값을 비웁니다.
-            firstNameInput.value = '';
-            lastNameInput.value = '';
-            mailInput.value = '';
-            syozokuInput.value = '';
-            yakusyokuInput.value = '';
-            telInput.value = '';
-        });
-
-        // 새로운 행 추가 버튼 클릭 시 동작
-        addNewRowButton.addEventListener('click', function () {
-            // 추가 버튼 클릭 시 수행할 작업 추가
-            // 예: 새로운 행을 추가하는 등의 동작
-        });
-
-        // 폼 제출 시 동작
         form.addEventListener('submit', function (event) {
-            // 현재의 取引先名(全名) 값을 가져옴
-            var currentTorihikiNameAll = document.getElementById('torihikiNameAll').value.trim();
-
-            // 삭제 버튼 클릭 시만 특정 필드의 값을 체크하고 경고창 출력
-            if (event.submitter === deleteButton) {
-                // 삭제 버튼 클릭 시 수행할 작업 추가
-                // 예: 필요한 경우 특정 필드의 값을 체크하고 경고창을 표시
-            }
-
-            // 변경된 값이 없으면 경고창 출력하지 않음
-            if (originalTorihikiNameAll === currentTorihikiNameAll) {
-                return;
-            }
-
-            // 변경된 값이 있으면 추가적인 검증 로직 수행
             var firstNameInput = document.querySelector('input[name="firstName"]');
             var lastNameInput = document.querySelector('input[name="lastName"]');
             var mailInput = document.querySelector('input[name="mail"]');
             var syozokuInput = document.querySelector('input[name="syozoku"]');
             var yakusyokuInput = document.querySelector('input[name="yakusyoku"]');
             var telInput = document.querySelector('input[name="tel"]');
+			var checkbox = document.querySelector('input[type="checkbox"]');
 
+            // 체크박스 체크 여부 검사
             if (!checkbox.checked) {
-                alert('체크박스를 선택하세요.');
+                alert('To宛先の担当者を指定してください。');
                 event.preventDefault(); // 폼 제출을 막습니다.
                 return;
             }
 
-            if (!firstNameInput.value.trim() || !lastNameInput.value.trim() || !mailInput.value.trim() || !syozokuInput.value.trim() || !yakusyokuInput.value.trim() || !telInput.value.trim()) {
-                alert('모든 필드를 입력하세요.');
-                event.preventDefault(); // 폼 제출을 막습니다.
+            // 길이 제한 검사 및 경고창 표시
+            if (firstNameInput.value.trim().length > 20) {
+                alert('姓は20文字以内で入力してください');
+                event.preventDefault();
+                return;
+            }
+
+            if (lastNameInput.value.trim().length > 20) {
+                alert('名は20文字以内で入力してください');
+                event.preventDefault();
+                return;
+            }
+
+            if (mailInput.value.trim().length > 50) {
+                alert('メールアドレスは50文字以内で入力してください');
+                event.preventDefault();
+                return;
+            }
+
+            if (syozokuInput.value.trim().length > 50) {
+                alert('所属は50文字以内で入力してください');
+                event.preventDefault();
+                return;
+            }
+
+            if (yakusyokuInput.value.trim().length > 50) {
+                alert('役職は50文字以内で入力してください');
+                event.preventDefault();
+                return;
+            }
+
+            if (telInput.value.trim().length > 15) {
+                alert('電話番号は15文字以内で入力してください');
+                event.preventDefault();
                 return;
             }
 
             // 이메일 형식 검사
             var emailRegex = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i;
             if (!emailRegex.test(mailInput.value.trim())) {
-                alert('올바른 이메일 주소를 입력하세요.');
-                event.preventDefault();
-                return;
-            }
-
-            // 길이 제한 검사
-            if (firstNameInput.value.trim().length > 20 || lastNameInput.value.trim().length > 20 || syozokuInput.value.trim().length > 50 || yakusyokuInput.value.trim().length > 50 || telInput.value.trim().length > 15) {
-                alert('입력 값의 길이가 초과되었습니다.');
+                alert('メールアドレスを正し形式で入力してください。');
                 event.preventDefault();
                 return;
             }
         });
     });
 </script>
+
 
 <body>
 	<form action="/upd/upd" method="post" id="zzz" th:object="${toMain}">
