@@ -11,65 +11,16 @@
         var form = document.getElementById('zzz'); // yourFormId는 실제로 사용하는 form의 id로 변경
 
         form.addEventListener('submit', function (event) {
-            var firstNameInput = document.querySelector('input[name="firstName"]');
-            var lastNameInput = document.querySelector('input[name="lastName"]');
-            var mailInput = document.querySelector('input[name="mail"]');
-            var syozokuInput = document.querySelector('input[name="syozoku"]');
-            var yakusyokuInput = document.querySelector('input[name="yakusyoku"]');
-            var telInput = document.querySelector('input[name="tel"]');
-			var checkbox = document.querySelector('input[type="checkbox"]');
+            var checkbox = document.querySelector('input[type="checkbox"]');
 
             // 체크박스 체크 여부 검사
             if (!checkbox.checked) {
-                alert('To宛先の担当者を指定してください。');
+                alert('FAXは１５文字以下で入力してください。');
                 event.preventDefault(); // 폼 제출을 막습니다.
                 return;
             }
 
-            // 길이 제한 검사 및 경고창 표시
-            if (firstNameInput.value.trim().length > 20) {
-                alert('姓は20文字以内で入力してください');
-                event.preventDefault();
-                return;
-            }
 
-            if (lastNameInput.value.trim().length > 20) {
-                alert('名は20文字以内で入力してください');
-                event.preventDefault();
-                return;
-            }
-
-            if (mailInput.value.trim().length > 50) {
-                alert('メールアドレスは50文字以内で入力してください');
-                event.preventDefault();
-                return;
-            }
-
-            if (syozokuInput.value.trim().length > 50) {
-                alert('所属は50文字以内で入力してください');
-                event.preventDefault();
-                return;
-            }
-
-            if (yakusyokuInput.value.trim().length > 50) {
-                alert('役職は50文字以内で入力してください');
-                event.preventDefault();
-                return;
-            }
-
-            if (telInput.value.trim().length > 15) {
-                alert('電話番号は15文字以内で入力してください');
-                event.preventDefault();
-                return;
-            }
-
-            // 이메일 형식 검사
-            var emailRegex = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i;
-            if (!emailRegex.test(mailInput.value.trim())) {
-                alert('メールアドレスを正し形式で入力してください。');
-                event.preventDefault();
-                return;
-            }
         });
     });
 </script>
@@ -88,8 +39,8 @@
             <p><label for="yuubin">住所 〒<input type="text" style="margin-left: 20px; width: 5%" id="yuubin" th:value="${toMain?.yuubin}" name="yuubin"></label></p>
             <p>住所<input type="text" style="margin-left: 10%; width: 30%" id="jyusyo1" th:value="${toMain?.jyusyo1}" name="jyusyo1">番地まで</p>
             <p>住所<input type="text" style="margin-left: 10%; width: 30%" id="jyusyo2" th:value="${toMain?.jyusyo2}" name="jyusyo2">マンション名・号室など</p>
-            <p>電話<input type="text" style="margin-left: 10%; width: 30%" id="tel" th:value="${toMain?.tel}" name="tel"></p>
-            <p>FAX <input type="text" style="margin-left: 10%" id="fax" th:value="${toMain?.fax}" name="fax"></p>
+       <p>電話<input type="text" style="margin-left: 10%; width: 30%" id="tel" th:value="${toMain?.tel}" name="tel"></p>
+        <p>FAX <input type="text" style="margin-left: 10%" id="fax" th:value="${toMain?.fax}" name="fax"></p>
             <p>ホームページ <input type="text" style="margin-left: 35px; width: 30%" id="url" th:value="${toMain?.url}" name="url"></p>
             <p>参考 <input type="text" style="width:50%;height:10%;font-size:30px" id="bikou" th:value="${toMain?.bikou}" name="bikou"></p>
         </div>
